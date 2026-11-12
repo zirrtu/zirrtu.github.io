@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101116">
+  <meta name="description" content="SYKI-TTS Pro 自然语音试听。">
+  <title>SYKI-TTS Pro | 自然语音试听</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/data.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy"><h1 id="hero-title">SYKI-TTS <span>Pro</span></h1></div>
+        <div class="hero-art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="reference-band" aria-labelledby="reference-heading">
+      <div class="reference-inner">
+        <div class="reference-heading">
+          <h2 id="reference-heading">参考音色</h2>
+        </div>
+        <div id="reference-player" class="reference-player"></div>
+      </div>
+    </section>
+
+    <section id="samples" class="samples-section" aria-labelledby="samples-heading">
+      <div class="section-heading">
+        <h2 id="samples-heading">语音试听</h2>
+        <button id="play-all" class="play-all" type="button"><span class="all-icon" aria-hidden="true"></span><span class="all-label">连续播放</span></button>
+      </div>
+      <div id="samples-list" class="samples-list"></div>
+      <p id="playback-error" class="playback-error" role="status" aria-live="polite"></p>
+      <noscript><p>请启用 JavaScript 后试听音频。</p></noscript>
+    </section>
+  </main>
+</body>
+</html>
