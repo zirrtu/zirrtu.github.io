@@ -198,7 +198,7 @@
     return paragraph;
   }
 
-  if (!extras || extras.comparisons.length !== 4 || extras.paralinguistic.length !== 6 || extras.emotions.length !== 18) {
+  if (!extras || extras.comparisons.length !== 5 || extras.paralinguistic.length !== 4 || extras.emotions.length !== 5) {
     errorOutput.textContent = '部分试听内容加载失败。';
     return;
   }
@@ -226,23 +226,22 @@
       node('span', 'emotion-label', item.emotion));
     article.append(header, node('p', 'comparison-text', item.text));
     const inputGrid = node('div', 'comparison-grid input-grid');
-    for (const [part, label, transcript] of [[item.speaker, '音色参考', item.speakerText],
-      [item.expression, '情感参考', item.expressionText]]) {
+    for (const [part, label] of [[item.speaker, '音色参考'], [item.expression, '情感参考']]) {
       const unit = node('div', 'comparison-unit');
-      unit.append(node('h3', 'unit-title', label), createPlayer(part, `${item.emotion}${label}`).root,
-        node('p', 'prompt-transcript', transcript));
+      unit.append(node('h3', 'unit-title', label), createPlayer(part, `${item.emotion}${label}`).root);
       inputGrid.append(unit);
     }
     const resultGrid = node('div', 'comparison-grid result-grid');
-    for (const [part, label] of [[item.index2, 'IndexTTS 2'], [item.pro, 'SYKI-TTS Pro']]) {
+    for (const [part, label] of [[item.index2, 'IndexTTS 2'], [item.selected, item.selectedLabel]]) {
       const unit = node('div', 'comparison-unit');
       const heading = node('div', 'unit-heading');
-      heading.append(node('h3', 'unit-title', label), node('span', 'metric',
-        `SS ${part.ss.toFixed(3)} · ES ${part.es.toFixed(3)} · CER ${(part.cer * 100).toFixed(1)}%`));
+      heading.append(node('h3', 'unit-title', label));
+      if (Number.isFinite(part.ss)) heading.append(node('span', 'metric', `SS ${part.ss.toFixed(3)}`));
       unit.append(heading, createPlayer(part, `${item.emotion}${label}`).root);
       resultGrid.append(unit);
     }
     article.append(inputGrid, resultGrid);
+    if (item.note) article.append(node('p', 'comparison-case-note', item.note));
     comparisonList.append(article);
   }
 

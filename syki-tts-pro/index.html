@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#101116">
   <meta name="description" content="SYKI-TTS Pro 自然语音试听。">
   <title>SYKI-TTS Pro | 自然语音试听</title>
-  <link rel="stylesheet" href="assets/style.css?v=3">
+  <link rel="stylesheet" href="assets/style.css?v=4">
   <script defer src="assets/data.js"></script>
-  <script defer src="assets/extras.js?v=3"></script>
-  <script defer src="assets/app.js?v=3"></script>
+  <script defer src="assets/extras.js?v=4"></script>
+  <script defer src="assets/app.js?v=4"></script>
 </head>
 <body>
   <main id="top">
@@ -31,7 +31,7 @@
 
     <section id="samples" class="samples-section" aria-labelledby="samples-heading">
       <div class="section-heading">
-        <h2 id="samples-heading">语音试听</h2>
+        <h2 id="samples-heading">超自然对话语音</h2>
         <button id="play-all" class="play-all" type="button"><span class="all-icon" aria-hidden="true"></span><span class="all-label">连续播放</span></button>
       </div>
       <div id="samples-list" class="samples-list"></div>
@@ -46,10 +46,10 @@
 
     <section id="voice-comparison" class="feature-section" aria-labelledby="comparison-heading">
       <div class="feature-heading">
-        <h2 id="comparison-heading">音色与情感参考对照</h2>
-        <p class="feature-note">不同说话人的音色与情感参考，同一文本。</p>
+        <h2 id="comparison-heading">与 IndexTTS 2 对照</h2>
+        <p class="feature-note">所选样例，同一音色与情感参考。</p>
       </div>
-      <details class="method-note"><summary>对照与指标说明</summary><p>样例从既有的 300 组对照测试中筛选，不代表整体统计。展示的两种方案使用相同文本和原始参考；SYKI-TTS Pro 将情感参考经过音色矫正后与原参考融合，再进行合成。SS 是音色相似度，ES 是与同情感真实语音的相似度，CER 是自动识别字错率。其他单参考模型的音色分数不作直接比较；单例数值不等于主观听感或整体效果。</p></details>
+      <details class="method-note"><summary>对照说明</summary><p>SYKI 一侧为已选历史结果，IndexTTS 2 使用所示文本和相同原始参考重新生成。其中部分历史结果经过音频截取，生成时的完整文本和随机种子不完全相同；单次试听不代表整体测试。SS 为相对音色参考的相似度。</p></details>
       <div id="comparison-list" class="comparison-list"></div>
     </section>
 

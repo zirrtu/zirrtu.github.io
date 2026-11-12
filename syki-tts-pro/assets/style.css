@@ -68,6 +68,7 @@ h1,h2,p{margin-top:0}
 .item-number{font-size:12px;font-weight:650;color:#a7aaae;font-variant-numeric:tabular-nums}
 .emotion-label{font-size:13px;color:#987744;font-weight:600}
 .comparison-text{margin:14px 0 22px;color:#292c30;font-size:17px;line-height:1.7}
+.comparison-case-note{margin:12px 0 0;color:#92979b;font-size:12px;line-height:1.6}
 .comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 38px}
 .comparison-unit{min-width:0}
 .input-grid{padding:0 0 23px}
