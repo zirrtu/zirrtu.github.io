@@ -198,9 +198,24 @@
     return paragraph;
   }
 
-  if (!extras || extras.comparisons.length !== 4 || extras.paralinguistic.length !== 6) {
+  if (!extras || extras.comparisons.length !== 4 || extras.paralinguistic.length !== 6 || extras.emotions.length !== 18) {
     errorOutput.textContent = '部分试听内容加载失败。';
     return;
+  }
+
+  const emotionList = document.querySelector('#emotion-list');
+  for (const category of [...new Set(extras.emotions.map(item => item.category))]) {
+    const group = node('section', 'emotion-group');
+    group.append(node('h3', 'emotion-group-title', category));
+    for (const [index, item] of extras.emotions.filter(row => row.category === category).entries()) {
+      const article = node('article', 'emotion-item');
+      const number = node('span', 'item-number', String(index + 1).padStart(2, '0'));
+      number.setAttribute('aria-hidden', 'true');
+      article.append(number, node('p', 'emotion-text', item.text),
+        createPlayer(item.output, `${category}示例 ${index + 1}`, null, 'emotion').root);
+      group.append(article);
+    }
+    emotionList.append(group);
   }
 
   const comparisonList = document.querySelector('#comparison-list');
@@ -222,7 +237,8 @@
     for (const [part, label] of [[item.index2, 'IndexTTS 2'], [item.pro, 'SYKI-TTS Pro']]) {
       const unit = node('div', 'comparison-unit');
       const heading = node('div', 'unit-heading');
-      heading.append(node('h3', 'unit-title', label), node('span', 'metric', `SS ${part.ss.toFixed(3)} · ES ${part.es.toFixed(3)}`));
+      heading.append(node('h3', 'unit-title', label), node('span', 'metric',
+        `SS ${part.ss.toFixed(3)} · ES ${part.es.toFixed(3)} · CER ${(part.cer * 100).toFixed(1)}%`));
       unit.append(heading, createPlayer(part, `${item.emotion}${label}`).root);
       resultGrid.append(unit);
     }
