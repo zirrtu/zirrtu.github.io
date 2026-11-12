@@ -6,9 +6,10 @@
   <meta name="theme-color" content="#101116">
   <meta name="description" content="SYKI-TTS Pro 自然语音试听。">
   <title>SYKI-TTS Pro | 自然语音试听</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=2">
   <script defer src="assets/data.js"></script>
-  <script defer src="assets/app.js"></script>
+  <script defer src="assets/extras.js?v=2"></script>
+  <script defer src="assets/app.js?v=2"></script>
 </head>
 <body>
   <main id="top">
@@ -36,6 +37,21 @@
       <div id="samples-list" class="samples-list"></div>
       <p id="playback-error" class="playback-error" role="status" aria-live="polite"></p>
       <noscript><p>请启用 JavaScript 后试听音频。</p></noscript>
+    </section>
+
+    <section id="voice-comparison" class="feature-section" aria-labelledby="comparison-heading">
+      <div class="feature-heading">
+        <h2 id="comparison-heading">音色与情感参考对照</h2>
+        <p class="feature-note">不同说话人的音色与情感参考，同一文本。</p>
+      </div>
+      <details class="method-note"><summary>对照与指标说明</summary><p>样例从既有的 300 组对照测试中筛选，不代表整体统计。两种方案使用相同的文本和原始参考；SYKI-TTS Pro 将情感参考经过音色矫正后与原参考融合，再进行合成。SS 是与音色参考的相似度，ES 是与同情感真实语音的相似度，数值仅供参考。</p></details>
+      <div id="comparison-list" class="comparison-list"></div>
+    </section>
+
+    <section id="paralinguistic" class="feature-section paralinguistic-section" aria-labelledby="paralinguistic-heading">
+      <div class="feature-heading"><h2 id="paralinguistic-heading">副语言控制</h2></div>
+      <details class="method-note"><summary>样例说明</summary><p>样例来自已确认的三阶段验收结果；部分通过参考音频编辑、重新合成或音频拼接完成。</p></details>
+      <div id="paralinguistic-list" class="paralinguistic-list"></div>
     </section>
   </main>
 </body>

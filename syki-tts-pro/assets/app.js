@@ -2,6 +2,7 @@
   'use strict';
 
   const data = window.SYKI_DEMO;
+  const extras = window.SYKI_EXTRAS;
   const svgNS = 'http://www.w3.org/2000/svg';
   const list = document.querySelector('#samples-list');
   const referenceTarget = document.querySelector('#reference-player');
@@ -71,7 +72,7 @@
     }
   }
 
-  function createPlayer(item, label, status = null) {
+  function createPlayer(item, label, status = null, group = 'other') {
     const root = document.createElement('div');
     root.className = 'audio-player';
     const button = document.createElement('button');
@@ -103,7 +104,7 @@
     audio.preload = 'metadata';
     audio.hidden = true;
     root.append(button, waveWrap, time, audio);
-    const player = { root, button, scrubber, time, audio, data: item, label, bars, status };
+    const player = { root, button, scrubber, time, audio, data: item, label, bars, status, group };
     players.push(player);
     setState(player, false);
     updateProgress(player);
@@ -125,7 +126,7 @@
     audio.addEventListener('ended', () => {
       updateProgress(player);
       if (!sequence) return;
-      const samplePlayers = players.filter(candidate => candidate.data.id !== 'reference');
+      const samplePlayers = players.filter(candidate => candidate.group === 'natural');
       const next = samplePlayers[samplePlayers.indexOf(player) + 1];
       if (next) { next.audio.currentTime = 0; start(next, true); }
       else setSequence(false);
@@ -159,7 +160,7 @@
     status.className = 'sample-status';
     status.setAttribute('aria-live', 'polite');
     meta.append(score, status);
-    controls.append(createPlayer(sample, `语音 ${sample.id}`, status).root, meta);
+    controls.append(createPlayer(sample, `语音 ${sample.id}`, status, 'natural').root, meta);
     row.append(number, text, controls);
     list.append(row);
   }
@@ -171,11 +172,80 @@
       if (active) active.audio.pause();
       return;
     }
-    const first = players.find(player => player.data.id !== 'reference');
+    const first = players.find(player => player.group === 'natural');
     if (!first) return;
     if (active) active.audio.pause();
     first.audio.currentTime = 0;
     setSequence(true);
     start(first, true);
   });
+
+  function node(tag, className, text) {
+    const result = document.createElement(tag);
+    if (className) result.className = className;
+    if (text !== undefined) result.textContent = text;
+    return result;
+  }
+
+  function markedText(text) {
+    const paragraph = node('p', 'para-text');
+    for (const part of text.split(/(\[(?:laugh|pause|hold)\]|<\/?(?:fast|slow|stress)>)/g)) {
+      if (!part) continue;
+      if (/^(\[(?:laugh|pause|hold)\]|<\/?(?:fast|slow|stress)>)$/.test(part)) {
+        paragraph.append(node('span', 'text-marker', part));
+      } else paragraph.append(document.createTextNode(part));
+    }
+    return paragraph;
+  }
+
+  if (!extras || extras.comparisons.length !== 4 || extras.paralinguistic.length !== 6) {
+    errorOutput.textContent = '部分试听内容加载失败。';
+    return;
+  }
+
+  const comparisonList = document.querySelector('#comparison-list');
+  for (const [index, item] of extras.comparisons.entries()) {
+    const article = node('article', 'comparison-item');
+    const header = node('div', 'comparison-header');
+    header.append(node('span', 'item-number', String(index + 1).padStart(2, '0')),
+      node('span', 'emotion-label', item.emotion));
+    article.append(header, node('p', 'comparison-text', item.text));
+    const inputGrid = node('div', 'comparison-grid input-grid');
+    for (const [part, label, transcript] of [[item.speaker, '音色参考', item.speakerText],
+      [item.expression, '情感参考', item.expressionText]]) {
+      const unit = node('div', 'comparison-unit');
+      unit.append(node('h3', 'unit-title', label), createPlayer(part, `${item.emotion}${label}`).root,
+        node('p', 'prompt-transcript', transcript));
+      inputGrid.append(unit);
+    }
+    const resultGrid = node('div', 'comparison-grid result-grid');
+    for (const [part, label] of [[item.index2, 'IndexTTS 2'], [item.pro, 'SYKI-TTS Pro']]) {
+      const unit = node('div', 'comparison-unit');
+      const heading = node('div', 'unit-heading');
+      heading.append(node('h3', 'unit-title', label), node('span', 'metric', `SS ${part.ss.toFixed(3)} · ES ${part.es.toFixed(3)}`));
+      unit.append(heading, createPlayer(part, `${item.emotion}${label}`).root);
+      resultGrid.append(unit);
+    }
+    article.append(inputGrid, resultGrid);
+    comparisonList.append(article);
+  }
+
+  const paralinguisticList = document.querySelector('#paralinguistic-list');
+  for (const [index, item] of extras.paralinguistic.entries()) {
+    const article = node('article', 'para-item');
+    const heading = node('div', 'para-heading');
+    heading.append(node('span', 'item-number', String(index + 1).padStart(2, '0')),
+      node('h3', 'para-type', item.type));
+    const content = node('div', 'para-content');
+    content.append(markedText(item.text));
+    const control = node('div', 'para-control');
+    control.append(createPlayer(item.output, `${item.type}示例`).root);
+    const reference = document.createElement('details');
+    reference.className = 'para-reference';
+    reference.append(node('summary', '', '参考音色'), createPlayer(item.reference, `${item.type}的参考音色`).root);
+    control.append(reference);
+    content.append(control);
+    article.append(heading, content);
+    paralinguisticList.append(article);
+  }
 })();
