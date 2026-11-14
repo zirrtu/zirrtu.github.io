@@ -11,6 +11,7 @@
   const allLabel = allButton.querySelector('.all-label');
   const errorOutput = document.querySelector('#playback-error');
   const players = [];
+  const playbackAvailable = false;
   let active = null;
   let sequence = false;
 
@@ -35,13 +36,13 @@
   function setSequence(enabled) {
     sequence = enabled;
     allIcon.replaceChildren(icon(enabled ? 'Square' : 'Play'));
-    allLabel.textContent = enabled ? '停止播放' : '连续播放';
+    allLabel.textContent = playbackAvailable ? (enabled ? '停止播放' : '连续播放') : '暂停试听';
     allButton.setAttribute('aria-pressed', String(enabled));
   }
 
   function setState(player, playing) {
     player.button.replaceChildren(icon(playing ? 'Pause' : 'Play'));
-    const label = `${playing ? '暂停' : '播放'}${player.label}`;
+    const label = playbackAvailable ? `${playing ? '暂停' : '播放'}${player.label}` : `${player.label}暂不可播放`;
     player.button.setAttribute('aria-label', label);
     player.button.title = label;
     player.root.classList.toggle('is-playing', playing);
@@ -49,6 +50,10 @@
   }
 
   function updateProgress(player) {
+    if (!playbackAvailable) {
+      player.time.textContent = '暂停试听';
+      return;
+    }
     const duration = Number.isFinite(player.audio.duration) && player.audio.duration > 0
       ? player.audio.duration : player.data.duration;
     const progress = duration > 0 ? Math.min(1, player.audio.currentTime / duration) : 0;
@@ -59,6 +64,7 @@
   }
 
   async function start(player, fromSequence = false) {
+    if (!playbackAvailable) return;
     if (!fromSequence) setSequence(false);
     if (active && active !== player) active.audio.pause();
     active = player;
@@ -78,6 +84,7 @@
     const button = document.createElement('button');
     button.className = 'play-button';
     button.type = 'button';
+    button.disabled = !playbackAvailable;
     const waveWrap = document.createElement('div');
     waveWrap.className = 'wave-wrap';
     const wave = document.createElement('div');
@@ -95,13 +102,14 @@
     scrubber.min = '0';
     scrubber.max = '1000';
     scrubber.value = '0';
+    scrubber.disabled = !playbackAvailable;
     scrubber.setAttribute('aria-label', `${label}播放进度`);
     waveWrap.append(wave, scrubber);
     const time = document.createElement('span');
     time.className = 'audio-time';
     const audio = document.createElement('audio');
-    audio.src = item.audio;
-    audio.preload = 'metadata';
+    if (playbackAvailable) audio.src = item.audio;
+    audio.preload = playbackAvailable ? 'metadata' : 'none';
     audio.hidden = true;
     root.append(button, waveWrap, time, audio);
     const player = { root, button, scrubber, time, audio, data: item, label, bars, status, group };
@@ -166,6 +174,8 @@
   }
 
   setSequence(false);
+  allButton.disabled = !playbackAvailable;
+  allButton.title = playbackAvailable ? '' : '音频暂不可播放';
   allButton.addEventListener('click', () => {
     if (sequence) {
       setSequence(false);

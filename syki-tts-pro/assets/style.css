@@ -20,6 +20,7 @@ h1,h2,p{margin-top:0}
 .audio-player{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:15px;align-items:center;min-width:0}
 .play-button{display:grid;place-items:center;width:46px;height:46px;padding:0;border:0;border-radius:50%;background:#1d2024;color:white;transition:background .2s ease,transform .2s ease}
 .play-button:hover{background:#405b63;transform:scale(1.04)}
+.play-button:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .play-button svg{width:19px;height:19px;stroke-width:2}
 .reference-player .play-button{background:#b18b51}
 .reference-player .play-button:hover{background:#856b43}
@@ -37,6 +38,7 @@ h1,h2,p{margin-top:0}
 .section-heading h2{margin:0;font-size:23px;line-height:1.3;font-weight:650;letter-spacing:0}
 .play-all{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid #dedfe1;border-radius:7px;color:#41464b;background:#fff;white-space:nowrap;font-size:13px;font-weight:600;transition:background .2s ease,border-color .2s ease}
 .play-all:hover{background:#f5f6f7;border-color:#c7c9cb}
+.play-all:disabled{opacity:.55;cursor:not-allowed}
 .all-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px}
 .all-icon svg{width:16px;height:16px}
 .samples-list{border-top:1px solid #dfe1e3}
