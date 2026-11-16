@@ -11,7 +11,7 @@
   const allLabel = allButton.querySelector('.all-label');
   const errorOutput = document.querySelector('#playback-error');
   const players = [];
-  const playbackAvailable = false;
+  const playbackAvailable = true;
   let active = null;
   let sequence = false;
 
