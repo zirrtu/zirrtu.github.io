@@ -109,7 +109,7 @@
     time.className = 'audio-time';
     const audio = document.createElement('audio');
     if (playbackAvailable) audio.src = item.audio;
-    audio.preload = playbackAvailable ? 'metadata' : 'none';
+    audio.preload = 'none';
     audio.hidden = true;
     root.append(button, waveWrap, time, audio);
     const player = { root, button, scrubber, time, audio, data: item, label, bars, status, group };
