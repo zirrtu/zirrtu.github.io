@@ -1,0 +1,61 @@
+SYKI-SVC2 · Audio credits
+
+The demo presents selected excerpts, controlled degradations, and singing voice conversions.
+Listening files use a constant gain for level matching.
+Audio adapted from GTSinger and M4Singer is shared under CC BY-NC-SA 4.0.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+Original VocalSet excerpts are licensed under CC BY 4.0.
+https://creativecommons.org/licenses/by/4.0/
+
+GTSinger — Yu Zhang et al., GTSinger, NeurIPS 2024
+https://huggingface.co/datasets/GTSinger/GTSinger/tree/4426c862beed558b7e1cb8a4dce7e8c0c83bb208
+CC BY-NC-SA 4.0 · https://huggingface.co/datasets/GTSinger/GTSinger/blob/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/dataset_license.md
+Cardigan | GTSinger:EN-Tenor-1 | 0.00–9.17 s | 8604a47dbe26
+https://huggingface.co/datasets/GTSinger/GTSinger/resolve/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/English/EN-Tenor-1/Mixed_Voice_and_Falsetto/Cardigan/Control_Group/0009.wav
+Wildest Dreams | GTSinger:EN-Tenor-1 | 3.53–7.53 s | c05c0b237add
+https://huggingface.co/datasets/GTSinger/GTSinger/resolve/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/English/EN-Tenor-1/Mixed_Voice_and_Falsetto/Wildest%20Dreams/Control_Group/0000.wav
+innocence | GTSinger:EN-Alto-1 | 0.00–8.11 s | ac4c63d122f6
+https://huggingface.co/datasets/GTSinger/GTSinger/resolve/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/English/EN-Alto-1/Breathy/innocence/Control_Group/0013.wav?download=true
+love stroy | GTSinger:EN-Alto-1 | 0.00–10.05 s | be8103cd0371
+https://huggingface.co/datasets/GTSinger/GTSinger/resolve/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/English/EN-Alto-1/Pharyngeal/love%20stroy/Control_Group/0012.wav?download=true
+seasons in the sun | GTSinger:EN-Alto-1 | 0.36–4.36 s | 69a078c1b0ba
+https://huggingface.co/datasets/GTSinger/GTSinger/resolve/4426c862beed558b7e1cb8a4dce7e8c0c83bb208/English/EN-Alto-1/Mixed_Voice_and_Falsetto/seasons%20in%20the%20sun/Control_Group/0021.wav?download=true
+
+M4Singer — Lichao Zhang et al., M4Singer, NeurIPS 2022
+https://m4singer.github.io/
+CC BY-NC-SA 4.0 · https://github.com/M4Singer/M4Singer/blob/master/dataset_license.md
+一笑倾城 | M4Singer:Alto-6 | 2.90–6.90 s | 99a0c21cb4ce
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+七月上 | M4Singer:Bass-2 | 0.00–8.12 s | 631114741b60
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+光 | M4Singer:Alto-2 | 0.48–4.48 s | 6b0384ca838e
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+凄美的 | M4Singer:Tenor-2 | 0.00–9.55 s | 87312d83cfcc
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+即兴 | M4Singer:Alto-7 | 0.15–4.15 s | 3bf508cb507a
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+呼吸决定 | M4Singer:Alto-5 | 0.27–4.27 s | cf82920d3060
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+惊鸿舞 | M4Singer:Tenor-4 | 1.18–5.18 s | 582ec5ff7955
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+我还想他 | M4Singer:Tenor-1 | 0.00–8.42 s | 1e6019d89b53
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+渔光曲 | M4Singer:Soprano-1 | 2.95–6.95 s | eed833d8ec74
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+背对背拥抱 | M4Singer:Soprano-2 | 0.00–8.17 s | f9af7dd3cad8
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+长恨歌 | M4Singer:Tenor-4 | 0.27–4.27 s | 5aa78b976b8a
+https://drive.google.com/file/d/1xC37E59EWRRFFLdG3aJkVqwtLDgtFNqW/view
+
+VocalSet — Julia Wilkins, Prem Seetharaman, Alison Wahl and Bryan Pardo, VocalSet, ISMIR 2018
+https://zenodo.org/records/1193957
+CC BY 4.0 · https://creativecommons.org/licenses/by/4.0/
+Row, Row, Row Your Boat | VocalSet:female5 | 8.90–12.90 s | 2a704a418da0
+https://zenodo.org/records/1193957
+Row, Row, Row Your Boat | VocalSet:female6 | 5.80–9.80 s | 534d9760936c
+https://zenodo.org/records/1193957
+Row, Row, Row Your Boat | VocalSet:male3 | 6.40–10.40 s | afe6d4f24f64
+https://zenodo.org/records/1193957
+Row, Row, Row Your Boat | VocalSet:female4 | 4.00–8.00 s | d94a3b79700b
+https://zenodo.org/records/1193957
+
